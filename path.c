@@ -8,30 +8,37 @@ extern char **environ;
  * 
  * Return: PATH.
  **/
+char *cmd_search(char *path, char *cmd);
 int find_str(const char *str1, const char *str2);
 
-void main(void)
+char *search_path(char *cmd)
 {
-	int i = 0;
-	int p = 0;
+	int i = 0, int p = 0;
+	char *buffer;
 
-	//Transversing through all environmental variables
+	//Transversing through all environmental variables.
+
 	for (; *(environ[i]) != '\0'; i++)
 	{
 
 
-		p = find_str(environ[i], "PATH");
+		p = find_str(environ[i], "PATH=");
 
-		if (p == 0) //i.e PATH is found
+		if (p == 0) //i.e If PATH is found
 		{
 			break;
 		}
 
 	}
 
-	//result
-
 	printf("%s\n", environ[i]);
+
+	path = split_str(environ[i]);
+
+	str_token = cmd_search(char *path, char *cmd);
+
+
+return (str_token);
 }
 
 int find_str(const char *str1, const char *str2)
@@ -52,3 +59,26 @@ int find_str(const char *str1, const char *str2)
 
 return (flag);
 }
+
+char *cmd_search(char *path, char *cmd)
+{
+	int i = 0;
+	struct stat buff;
+
+	while (path[i] != NULL)
+	{
+		cmd_path = _strcat(path[i], cmd);
+
+		if (stat(cmd_path, buff) == 0)
+		{
+			str_token = (path[i]);
+			break;
+		}
+
+		i++;
+
+	}
+
+return (str_token);
+}
+

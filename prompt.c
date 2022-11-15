@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include "main.h"
 #define BUFFSIZE 1024
-#define STR_DELIM " \t\r\n\a"
+#define STR_DELIM " =:\t\r\n\a"
 extern char **environ;
 =======
 #include "main.h"
@@ -21,29 +21,26 @@ extern char **environ;
 
 char *read_line(void);
 char **split_str(char *buffer);
-<<<<<<< HEAD
 int execute_cmd(char **str_token);
-=======
->>>>>>> 593f5f812e483b7e1b4dcfe67ec318659b00c8ed
+char **check_cmd(char *buffer);
 
 
 void print_prompt(void)
 {
 	char *buffer;
 	char **str_token;
-<<<<<<< HEAD
 	int status;
-=======
->>>>>>> 593f5f812e483b7e1b4dcfe67ec318659b00c8ed
+
 
 	while(status)
 	{
 		printf("#cisfun$: ");
 		buffer = read_line();
+		buffer = check_cmd(buffer);
 		str_token = split_str(buffer);
-<<<<<<< HEAD
+
 		status = execute_cmd(str_token);
-=======
+
 
 		while (str_token != NULL)
 		{
@@ -51,7 +48,7 @@ void print_prompt(void)
 
 			str_token++;
 		}
->>>>>>> 593f5f812e483b7e1b4dcfe67ec318659b00c8ed
+
 	}
 
 	free(buffer);
@@ -140,7 +137,21 @@ char **split_str(char *buffer)
 
 return (str_token);
 }
-<<<<<<< HEAD
+
+char **check_cmd(char *buffer)
+{
+	if (buffer[i] == '\')
+	{
+		return (buffer);
+	}
+
+	else
+
+	buffer	= search_path(buffer);
+
+return (buffer);
+}
+
 
 int execute_cmd(char **str_token)
 {
@@ -173,5 +184,3 @@ int execute_cmd(char **str_token)
 
 return (status);
 }
-=======
->>>>>>> 593f5f812e483b7e1b4dcfe67ec318659b00c8ed
